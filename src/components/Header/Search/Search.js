@@ -12,7 +12,13 @@ export default class Search extends Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value }, () => this.props.searchPost(this.state.text))
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      if (this.state.text !== "") {
+        this.props.searchPost(this.state.text);
+      } else {
+        this.props.getAllPosts();
+      }
+    })
   }
 
   render() {
